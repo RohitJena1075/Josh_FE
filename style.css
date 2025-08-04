@@ -581,15 +581,9 @@ body, html { background: var(--light-bg);
   transition: 0.3s;
 }
 .main-footer .navbar a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  background: #fff;
-  bottom: -4px;
-  left: 0;
-  transition: width 0.3s;
+content: ''; position: absolute; width: 0%; height: 2px; background:var(--gold); bottom: -4px; left: 0; transition: width 0.3s;
 }
+
 .main-footer .navbar a:hover::after {
   width: 100%;
 }
