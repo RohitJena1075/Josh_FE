@@ -1,10 +1,24 @@
-window.onload = function() {
-  window.scrollTo(0, 0);
-  document.documentElement.style.scrollBehavior = 'auto';
-  setTimeout(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-  }, 100);
+window.onload = () => {
+  if (location.hash) location.hash = '';  // Clear anchor for hash links
+  window.scrollTo(0, 0);                  // Jump to top
 };
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('[data-include]').forEach(async el => {
+    const url = el.getAttribute('data-include');
+    try {
+      const resp = await fetch(url);
+      if (resp.ok) {
+        el.innerHTML = await resp.text();
+      } else {
+        el.innerHTML = `<p>Failed to load ${url}</p>`;
+      }
+    } catch (error) {
+      el.innerHTML = `<p>Error loading ${url}</p>`;
+    }
+  });
+});
 
 
 const navMap = {

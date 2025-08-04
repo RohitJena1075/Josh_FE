@@ -7,7 +7,9 @@
   font-family: 'Roboto', sans-serif;
 }
 * { margin:0; padding:0; box-sizing: border-box; font-family: 'Roboto', sans-serif;}
-body, html { background: var(--light-bg); }
+body, html { background: var(--light-bg); 
+  scroll-behavior: smooth;
+}
 
 .main-header { background-color: var(--primary-green); height: 80px; display: flex; align-items: center; position: relative;}
 .container { max-width: 1164px; margin: 0 auto; width: 100%; padding: 0 24px; display: flex; justify-content: space-between; align-items: center;}
