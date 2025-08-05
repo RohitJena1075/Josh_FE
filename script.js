@@ -1,14 +1,17 @@
 window.onload = () => {
-  if (location.hash) location.hash = '';  // Clear anchor for hash links
-  window.scrollTo(0, 0);                  // Jump to top
+  if (location.hash) location.hash = '';  
+  window.scrollTo(0, 0);                  
 };
 
 
+
+// MENU NAVBAR SCROLL
 const navMap = {
   'menu': '#kitchen-section',
   'about': '.landing-section',
   'contact': '.contact-section'
 };
+
 
 document.querySelectorAll('nav a').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
@@ -23,7 +26,8 @@ document.querySelectorAll('nav a').forEach(anchor => {
 });
 
 
-// --- CORE DOM ---
+
+//  (ADD TO CART,SEARCH - HEAD) 
 const searchBtn = document.getElementById('searchBtn');
 const cartBtn = document.getElementById('cartBtn');
 const searchBox = document.getElementById('searchBox');
@@ -37,16 +41,15 @@ const carouselTrack = document.getElementById("popularTrack");
 const leftBtn = document.getElementById("popularLeft");
 const rightBtn = document.getElementById("popularRight");
 let cart = [];
-let carouselIndex = 0; // left card index
+let carouselIndex = 0; 
 
-// -- Modal --
+
+// REQUEST DISH 
 const requestBtn = document.getElementById('requestDishBtn');
 const requestModal = document.getElementById('requestDishModal');
 const closeModal = document.getElementById('closeRequestModal');
 const cancelBtn = document.getElementById('cancelRequestBtn');
 const submitBtn = document.getElementById('submitRequestBtn');
-
-// --- BODY-NOSCROLL & PANEL HANDLING ---
 function lockBodyScroll(lock) {
   if (lock) document.body.classList.add('body-noscroll');
   else      document.body.classList.remove('body-noscroll');
@@ -99,7 +102,9 @@ if (requestModal) {
   observer.observe(requestModal, { attributes:true, attributeFilter:['class'] });
 }
 
-// --- Search logic ---
+
+
+// Search logic and cart logic in the landing and kitchen section
 function performSearch()   { filterCards(searchInput.value.trim().toLowerCase()); }
 function performHeaderSearch() {
   if (!headerSearchInput) return;
@@ -120,7 +125,7 @@ function filterCards(query) {
 if (searchInput)        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
 if (headerSearchInput)  headerSearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performHeaderSearch(); });
 
-// --- QTY TO CART ---
+//  QTY TO CART 
 function initKitchenCardQuantityControls() {
   document.querySelectorAll('.kitchen-card').forEach(card => {
     card.dataset.qty = card.dataset.qty || "0";
@@ -254,8 +259,9 @@ if (checkoutBtn) {
   });
 }
 
-// --- POPULAR ITEMS SLIDER ---
 
+
+// --- POPULAR ITEMS SLIDER 
 let SLIDES_VISIBLE = 3;
 function updatePopularSlider() {
   const track = document.getElementById('popularTrack');
@@ -291,7 +297,8 @@ document.addEventListener("DOMContentLoaded", function() {
   updatePopularSlider();
 });
 
-// Play/Pause Overlay Button for Video Section
+
+// VIDEO SECTION
 document.addEventListener("DOMContentLoaded", function() {
   const video = document.getElementById("homepageVideo");
   const playBtn = document.getElementById("customPlayBtn");
@@ -310,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function() {
       video.classList.add("playing");
     }
   }
-  // On click button or video
+
   playBtn.addEventListener("click", function(e) {
     e.stopPropagation();
     if (video.paused) { video.play(); } else { video.pause(); }
@@ -324,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
   video.addEventListener("pause", updateBtn);
   updateBtn();
 
-  // Keyboard spacebar play/pause if in view
+
   document.addEventListener("keydown", function(e) {
     if ((e.code === "Space" || e.key === " ") && document.activeElement === document.body) {
       const rect = video.getBoundingClientRect();
